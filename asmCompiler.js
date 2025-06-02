@@ -1,3 +1,39 @@
+// Pages 1 and 2
+var zeroPage = ("00000000".repeat(256)).split('')
+var stack = ("00000000".repeat(256)).split('')
+// Registers
+var pc = 0
+var sp = "00000000".split('')
+var accumulator = "00000000".split('')
+var x = "00000000".split('')
+var y = "00000000".split('')
+// Last 6 bytes
+var irq = "0".repeat(16).split(''), nmi = "0".repeat(16).split(''), reset = "0".repeat(16).split('')
+var memory = zeroPage.concat(stack, "0".repeat(65024).split(""), irq, nmi, reset)
+// Flags
+var carry = 0
+var zero = 0
+var interrupt_disable = 0
+var decimal_mode = 0
+var break_command = 0
+var overflow = 0 // V
+var negative = 0 // N
+var b = 0
+// Syntax
+var binary = false
+var hex = false
+var decimal = false
+// Addressing modes
+var immediate = false, accumulatorMode = false, absolute = false, absoluteX = false, absoluteY = false, implied = false, indirect = false, indirectX = false, indirectY = false, relative = false, zeroPageMode = false, zeroPageX = false, zeroPageY = false
+// List of instructions that utilize the addressing modes
+var impliedList = ["brk", "clc", "cld", "cli", "clv", "dex", "dey", "inx", "iny", "nop", "pha", "php", "pla", "plp", "rti", "rts", "sec", "sed", "sei", "tax", "tay", "tsx", "txa", "txs", "tya"]
+var zeroPageList = ["adc", "and", "asl", "bit", "cmp", "cpx", "cpy", "dec", "eor", "inc", "lda", "ldx", "ldy", "lsr", "ora", "rol", "ror", "sbc", "sta", "stx", "sty"]
+var relativeList = ["bcc", "bcs", "beq", "bmi", "bne", "bpl", "bvc", "bvs"]
+
+var input
+var program_counter = 0
+let asmCompilerFn = null
+
 function asmCompiler(asm) {
     function syntaxCheck(memLoc) {
         var char = memLoc[0]
