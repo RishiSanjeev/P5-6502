@@ -1067,4 +1067,6 @@ for (let i = 0; i < lines.length; i++) {
         pc = (pc + 1) & 0xFFFF
     }
 }
-return ("PC: " + pc.toString(16).padStart(4, "0").toUpperCase() + ", A: " + accumulator.join("") + ", X: " + x.join("") + "\n  Y: " + y.join("") + ", P (NV1B DIZC): " + negative + overflow + "1" + b + " " + decimal_mode + interrupt_disable + zero + carry)
+function returner {
+    return ("PC: " + pc.toString(16).padStart(4, "0").toUpperCase() + ", A: " + accumulator.join("") + ", X: " + x.join("") + "\n  Y: " + y.join("") + ", P (NV1B DIZC): " + negative + overflow + "1" + b + " " + decimal_mode + interrupt_disable + zero + carry)
+}
