@@ -1045,7 +1045,7 @@ function asmCompiler(asm) {
         }
         return false
     }
-    var lines = asm.split('\n')
+    var lines = asm.split('\n').map(line => (line.indexOf(';') !== -1 ? line.slice(0, line.indexOf(';')) : line).trim()).filter(line => line.length > 0)
     for (let i = 0; i < lines.length; i++) {
         let parts = lines[i].trim().split(' ')
         let instruction = parts[0].toLowerCase()
