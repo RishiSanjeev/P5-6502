@@ -2,7 +2,95 @@
 Rishi Sanjeev
 Pd. D
 5-15-25
-Final Project - 6502 Emulator
+Final Project - P5-6502
+
+A PiCode P5*JS 6502 processor emulator with an assembly code editor,
+complete with a console for easy access to register values (accumulator,
+x, y, and p (processor flags) and program counter). Also featured is a
+graphical representation of the 64kb memory using black and white squares
+on a 600x600 grid. Features include code editor themes, running, saving,
+file renaming, assembly tutorials, PiCode legacy view implementation,
+reloading, and an application map with arrows pointing to various
+elements of the program.
+
+The 6502 processor is an MOS Technology 8-bit microprocessor introduced
+in 1975 as a low-cost alternative to the 6800 and Intel 8080. It started
+the home computer revolution of the 80s and was used in legendary devices,
+including the Atari 2600, Apple II, NES, Commodore 64, Lynx, and BBC Micro.
+
+The 6502 is little-endian and contains a 16-bit address bus. Its registers include:
+
+A = 8-bit accumulator register
+P = 7-bit processor status register
+n = Negative
+v = Overflow
+b = Break (only in stack values, not in hardware)
+d = Decimal
+i = Interrupt disable
+z = Zero
+c = Carry
+PC = 16-bit program counter
+S = 8-bit stack pointer
+X = 8-bit index register
+Y = 8-bit index register
+
+Its specialized zero-page addressing mode helped it be competitive despite its lack of registers.
+6502 assembly has 13 addressing modes in total.
+
+
+
+     .----------------------------------------.
+     |                MOS 6502                |
+     |----------------------------------------|
+     |                                        |
+     |   .-----.   .-----.   .-----.          |
+     |   | ACC |   |  X  |   |  Y  |          |  <-- Registers
+     |   '-----'   '-----'   '-----'          |
+     |      |         |         |             |
+     |      |         `-----.   |             |
+     |      `-------------. |   |             |
+     |   .------------------------------.     |
+     |   |  ALU (Arithmetic Logic Unit) |     |  <-- Performs math/logical ops
+     |   '------------------------------'     |
+     |                 |                      |
+     |        .--------+--------.             |
+     |        |   Status Flags   |            |  <-- NV-BDIZC
+     |        '------------------'            |
+     |                 |                      |
+     |   .-------------------------------.    |
+     |   |   Instruction Decoder &       |    |
+     |   |     Control Logic             |    |
+     |   '-------------------------------'    |
+     |                 |                      |
+     |     .--------------------------.       |
+     |     |     Program Counter      |       |
+     |     '--------------------------'       |
+     |                 |                      |
+     |     .--------------------------.       |
+     |     |     Stack Pointer        |       |
+     |     '--------------------------'       |
+     |                 |                      |
+     |     .--------------------------.       |
+     |     |    Address Bus / MUX     |       |
+     |     '--------------------------'       |
+     |                 |                      |
+     |           .-------------.              |
+     |           |  Data Bus   |<-------------'
+     |           '-------------'              |
+     |                                        |
+     '----------------------------------------'
+
+To effectively utilize this program, you must know how
+to program in 6502 assembly. A tutorial is linked via
+the ❓ button in the right-hand menu.
+
+PiCode limitations:
+
+PiCode has a line limit. This makes it less than ideal for a final project, and due to the nature of my project, I was unable to shorten the code.
+An easy work around was to store the contents of the main compiler function asynchronously, on GitHub, and fetch and eval the raw content of the Github page through a CORS proxy. The CORS proxy is due to GitHub's raw url fetch not providing proper CORS headers sometimes. When testing my code, which should fully work, you may have to open this link: https://cors-anywhere.herokuapp.com/corsdemo to enable the CORS server on your device temporarily. This is clearly stated with a label and link to the proxy enabler. You can find the asmCompiler() function, which contains the bulk of the code, as well as a copy of the code stored on PiCode, in my Github repository here: https://github.com/RishiSanjeev/P5-6502/blob/main/emulator.js.
+Another workaround due to PiCode limitations was the necessity to open the project in fullscreen legacy view before utilizing the save function. This presents as having to ctrl+click the window button on the right side of the screen before pressing the save icon.
+Also, as PiCode does not have project renaming capabilities, it states that is an x86 asm emulator in the filename, however, the description corrects this.
+
 */
 
 // Pages 1 and 2
