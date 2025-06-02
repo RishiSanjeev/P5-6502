@@ -1070,3 +1070,4 @@ function asmCompiler(asm) {
     }
     return ("PC: " + pc.toString(16).padStart(4, "0").toUpperCase() + ", A: " + accumulator.join("") + ", X: " + x.join("") + "\n  Y: " + y.join("") + ", P (NV1B DIZC): " + negative + overflow + "1" + b + " " + decimal_mode + interrupt_disable + zero + carry)
 }
+window.asmCompiler = asmCompiler
